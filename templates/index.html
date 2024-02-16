@@ -1,0 +1,536 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Book Recommender System</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<style>&ndash;&gt;-->
+<!--&lt;!&ndash;    .text-white{&ndash;&gt;-->
+<!--&lt;!&ndash;        color:white&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;</style>&ndash;&gt;-->
+<!--&lt;!&ndash;<body style="background-color:black">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <nav class="navbar" style="background-color:#00a65a">&ndash;&gt;-->
+<!--&lt;!&ndash;        <a class="navbar-brand">My Book recommender</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ul class="nav navbar-nav">&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="/">Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="/recommend">Recommend</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a>Contact</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    </nav>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-12">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h1 class="text-white" style="font-size:50px">Top 50 Books</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            {% for i in range(book_name|length) %}&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-3" style="margin-top:50px">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <img class="card-img-top" src="{{ image[i] }}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p class="text-white">{{ book_name[i] }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <h4 class="text-white">{{ author[i] }}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <h4 class="text-white">Votes - {{ votes[i] }}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <h4 class="text-white">Rating - {{ rating[i] }}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            {% endfor %}&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Book Recommender System</title>-->
+<!--    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+<!--    &lt;!&ndash; Google Fonts &ndash;&gt;-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-color: #f5f5f5;-->
+<!--            font-family: 'Roboto', sans-serif;-->
+<!--        }-->
+<!--        .navbar {-->
+<!--            background-color: #008060;-->
+<!--            border-radius: 0;-->
+<!--            border: none;-->
+<!--        }-->
+<!--        .navbar-brand, .nav a {-->
+<!--            color: #fff !important;-->
+<!--        }-->
+<!--        .card {-->
+<!--            background-color: #ffffff;-->
+<!--            border: 0;-->
+<!--            margin-bottom: 30px;-->
+<!--            box-shadow: 0 4px 8px rgba(0,0,0,0.1);-->
+<!--            border-radius: 10px;-->
+<!--            overflow: hidden;-->
+<!--            transition: all 0.3s ease-in-out;-->
+<!--        }-->
+<!--        .card:hover {-->
+<!--            box-shadow: 0 6px 12px rgba(0,0,0,0.2);-->
+<!--        }-->
+<!--        .card img {-->
+<!--            width: 100%;-->
+<!--            height: auto;-->
+<!--            border-bottom: 1px solid #eeeeee;-->
+<!--        }-->
+<!--        .card-body {-->
+<!--            padding: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .card-body h4, .card-body p {-->
+<!--            margin: 10px 0;-->
+<!--        }-->
+<!--        .text-white {-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            color: #333;-->
+<!--            margin-bottom: 40px;-->
+<!--            font-weight: 700;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    <nav class="navbar">-->
+<!--        <div class="container">-->
+<!--            <a class="navbar-brand">My Book Recommender</a>-->
+<!--            <ul class="nav navbar-nav">-->
+<!--                <li><a href="/">Home</a></li>-->
+<!--                <li><a href="/recommend">Recommend</a></li>-->
+<!--                <li><a>Contact</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+<!--    <div class="container">-->
+<!--        <h1>Top 50 Books</h1>-->
+<!--        <div class="row">-->
+<!--            {% for i in range(book_name|length) %}-->
+<!--                <div class="col-md-3">-->
+<!--                    <div class="card">-->
+<!--                        <img class="card-img-top" src="{{ image[i] }}">-->
+<!--                        <div class="card-body">-->
+<!--                            <p>{{ book_name[i] }}</p>-->
+<!--                            <h4>{{ author[i] }}</h4>-->
+<!--                            <h4>Votes - {{ votes[i] }}</h4>-->
+<!--                            <h4>Rating - {{ rating[i] }}</h4>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Book Recommender System</title>-->
+<!--    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    &lt;!&ndash; Google Fonts &ndash;&gt;-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-color: #F2F2F2; /* Similar to the image background */-->
+<!--            font-family: 'Open Sans', sans-serif;-->
+<!--        }-->
+<!--        .navbar {-->
+<!--            background-color: #FFF; /* White navbar */-->
+<!--            box-shadow: 0 2px 4px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .navbar-brand {-->
+<!--            font-weight: 700;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        .nav-link {-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        .btn-primary {-->
+<!--            background-color: #22A7F0; /* Bright blue button */-->
+<!--            border: none;-->
+<!--        }-->
+<!--        .jumbotron {-->
+<!--            background-color: #FFF; /* White jumbotron */-->
+<!--            margin-top: 20px;-->
+<!--            padding: 30px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 2px 4px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .jumbotron h1 {-->
+<!--            font-size: 28px;-->
+<!--            font-weight: 700;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        .jumbotron p {-->
+<!--            font-weight: 300;-->
+<!--        }-->
+<!--        .jumbotron .btn {-->
+<!--            font-weight: 700;-->
+<!--        }-->
+<!--        .card {-->
+<!--            background-color: #FFF;-->
+<!--            border: none;-->
+<!--            margin-bottom: 20px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 2px 4px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .card img {-->
+<!--            width: 100%;-->
+<!--            border-radius: 10px 10px 0 0;-->
+<!--        }-->
+<!--        .card-body {-->
+<!--            padding: 15px;-->
+<!--        }-->
+<!--        .card-title, .card-text {-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        .footer {-->
+<!--            background-color: #FFF;-->
+<!--            padding: 10px 0;-->
+<!--            text-align: center;-->
+<!--            border-top: 1px solid #ECECEC;-->
+<!--            margin-top: 30px;-->
+<!--        }-->
+<!--        .footer p {-->
+<!--            margin: 0;-->
+<!--                    color: #333;-->
+<!--            font-weight: 300;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--        <div class="container">-->
+<!--            <a class="navbar-brand" href="#">My Book Recommender</a>-->
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+<!--            <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--                <ul class="navbar-nav ml-auto">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/">Home</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/recommend">Recommend</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Contact</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+<!--    <div class="jumbotron text-center">-->
+<!--        <h1 class="display-4">Discover Your Next Favorite Book</h1>-->
+<!--        <p class="lead">Find books you'll love, powered by our smart recommendation engine.</p>-->
+<!--        <hr class="my-4">-->
+<!--        <p>Explore popular titles and new releases tailored to your taste.</p>-->
+<!--        <a class="btn btn-primary btn-lg" href="#" role="button">Start Exploring</a>-->
+<!--    </div>-->
+
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            {% for i in range(book_name|length) %}-->
+<!--                <div class="col-md-3">-->
+<!--                    <div class="card">-->
+<!--                        <img class="card-img-top" src="{{ image[i] }}" alt="Book image">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">{{ book_name[i] }}</h5>-->
+<!--                            <p class="card-text">{{ author[i] }}</p>-->
+<!--                            <p class="card-text">Votes: {{ votes[i] }}</p>-->
+<!--                            <p class="card-text">Rating: {{ rating[i] }}</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="footer">-->
+<!--        <div class="container">-->
+<!--            <p>&copy; 2024 My Book Recommender. All rights reserved.</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Bootstrap and jQuery &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Literary Lane</title>-->
+<!--    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    &lt;!&ndash; Google Fonts &ndash;&gt;-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-color: #EAEFF9; /* Light blue background */-->
+<!--            font-family: 'Open Sans', sans-serif;-->
+<!--        }-->
+<!--        .navbar {-->
+<!--            background-color: #5C7AEA; /* Soothing blue navbar */-->
+<!--            box-shadow: 0 2px 4px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .navbar-brand, .nav-link {-->
+<!--            color: #333;-->
+<!--            font-weight: 700;-->
+<!--        }-->
+<!--        .page-title {-->
+<!--            color: #333;-->
+<!--            text-align: center;-->
+<!--            margin-top: 30px;-->
+<!--            font-size: 40px;-->
+<!--            font-weight: 700;-->
+<!--            padding-bottom: 10px;-->
+<!--            border-bottom: 1px solid #DDE2F1;-->
+<!--        }-->
+<!--        .card {-->
+<!--            background-color: #FFF;-->
+<!--            border: none;-->
+<!--            margin-bottom: 20px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 2px 4px rgba(0,0,0,0.1);-->
+<!--        }-->
+<!--        .card img {-->
+<!--            width: 100%;-->
+<!--            border-radius: 10px 10px 0 0;-->
+<!--        }-->
+<!--        .card-body {-->
+<!--            padding: 15px;-->
+<!--        }-->
+<!--        .card-title, .card-text {-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        .footer {-->
+<!--            background-color: #FFF;-->
+<!--            padding: 10px 0;-->
+<!--            text-align: center;-->
+<!--            border-top: 1px solid #ECECEC;-->
+<!--            margin-top: 30px;-->
+<!--        }-->
+<!--        .footer p {-->
+<!--            margin: 0;-->
+<!--            color: #333;-->
+<!--            font-weight: 300;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--        <div class="container">-->
+<!--            <a class="navbar-brand" href="#">Literary Lane</a>-->
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+<!--            <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--                <ul class="navbar-nav ml-auto">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/">Home</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/recommend">Recommend</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Contact</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+<!--    <h1 class="page-title">Top 50 Books</h1>-->
+
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            {% for i in range(book_name|length) %}-->
+<!--                <div class="col-md-3">-->
+<!--                    <div class="card">-->
+<!--                        <img class="card-img-top" src="{{ image[i] }}" alt="Book image">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">{{ book_name[i] }}</h5>-->
+<!--                            <p class="card-text">{{ author[i] }}</p>-->
+<!--                            <p class="card-text">Votes: {{ votes[i] }}</p>-->
+<!--                            <p class="card-text">Rating: {{ rating[i] }}</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="footer">-->
+<!--        <div class="container">-->
+<!--            <p>&copy; 2024 Literary Lane. All rights reserved.</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Bootstrap and jQuery &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Literary Lane</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F4F7FA;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .navbar {
+            background: #5C7AEA; /* Adjust the gradient colors as needed */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-size: 1.5em; /* Adjust size as needed */
+            color: white; /* This will make the title text white */
+            font-weight: bold; /* Make the font bold */
+        }
+        .nav-link {
+            color: white; /* This will make the nav link text white */
+            font-weight: 400;
+        }
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.5);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><path stroke='%232C3E50' stroke-width='3' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+        }
+        .page-title {
+            color: #2C3E50;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px; /* Slightly smaller than the original for better fit */
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #DDE2F1;
+        }
+        .card {
+            background-color: #FFF;
+            border: none;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title, .card-text {
+            color: #34495E; /* Even darker shade for text */
+        }
+        .btn-primary {
+            background-color: #22A7F0; /* Bright blue button, as in Blinkist */
+            border: none;
+        }
+        .footer {
+            background-color: #FFF;
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #ECECEC;
+            margin-top: 40px;
+        }
+        .footer p {
+            margin: 0;
+            color: #95A5A6; /* Light grey color for footer text */
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Literary Lane</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recommend">Recommend</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="page-title">Top 50 Books</h1>
+
+    <div class="container my-5">
+        <div class="row">
+            {% for i in range(book_name|length) %}
+            <div class="col-md-3">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ image[i] }}" alt="Book image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book_name[i] }}</h5>
+                            <p class="card-text">{{ author[i] }}</p>
+                            <p class="card-text">Votes: {{ votes[i] }}</p>
+                            <p class="card-text">Rating: {{ rating[i] }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2024 Literary Lane. All rights reserved.</p>
+        </div>
+    </div>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
