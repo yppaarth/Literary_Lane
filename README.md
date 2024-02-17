@@ -22,3 +22,10 @@ Data is sourced from a Kaggle dataset.
 
 ### Installation
 1. Clone the repository to your local machine:
+
+## Output
+
+![Screenshot 2024-02-16 211124](https://github.com/yppaarth/Literary_Lane/assets/78694506/54770c5a-8f9c-4405-bddc-775b89183da2)
+![Screenshot 2024-02-16 210607](https://github.com/yppaarth/Literary_Lane/assets/78694506/309fb968-9032-4d7c-9b6e-ca103122fa5f)
+
+   
