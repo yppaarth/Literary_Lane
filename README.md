@@ -3,7 +3,7 @@
 ## Introduction
 It is a Book Recommendation System is designed to help users discover new books based on their interests.
 It features a simple two-page interface: the first page displays the top 50 books,
-and the second page provides personalized book recommendations based on the user's input. The recommendations are genre-based,
+and the second page provides personalized book recommendations based on the user's input. The recommendations are Similar or same genre,
 offering four books similar to the one submitted by the user.
 The system utilizes a dataset from Kaggle to ensure a wide variety of genres and options.
 
